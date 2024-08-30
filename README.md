@@ -385,8 +385,8 @@ BEGIN
     ORDER BY customer_count DESC;
 END;
 ```
-
-```-- Detect unusual transaction patterns or anomalies by location.
+```
+-- Detect unusual transaction patterns or anomalies by location.
 
 CREATE PROCEDURE sp_detect_unusual_transactions
 AS
@@ -452,7 +452,8 @@ END;
 ```
 --Identify top-performing and underperforming merchants.
 
-```CREATE PROCEDURE sp_get_merchant_performance_with_thresholds
+```
+CREATE PROCEDURE sp_get_merchant_performance_with_thresholds
 (
     @high_threshold DECIMAL,
     @low_threshold DECIMAL
