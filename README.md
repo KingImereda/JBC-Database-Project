@@ -353,7 +353,75 @@ Using the Database Diagram features in SSMS, I was able to automatically create 
 
 ## DATABASE AUTOMATION.
 
+By automating database tasks, we can significantly streamline our operations, minimize errors, and optimize our database performance. This will lead to improved efficiency, accuracy, and overall management of our database environment. Specific areas of focus include automating routine tasks like backups, performance tuning, and data migration, Updates.
+
 ### TRIGGERS:
+#### A Trigger that declining online(net) transaction amount above 20000 from card user.
+```
+CREATE TRIGGER trg_decline_high_amount_transactions
+ON Transactions
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @merchant_category VARCHAR(MAX);
+    DECLARE @amount DECIMAL(18, 2);
+
+    -- Retrieve the merchant's category and the transaction amount
+    SELECT @merchant_category = M.category, @amount = I.Amount
+    FROM Merchant M
+    JOIN INSERTED I ON M.MerchantID = I.MerchantID;
+
+    -- Check if the category is 'misc_net' or 'shopping_net' and amount exceeds 20000
+    IF (@merchant_category IN ('misc_net', 'shopping_net') AND @amount > 20000)
+    BEGIN
+        RAISERROR('Transaction declined: Amount exceeds 20000 for category %s', 16, 1, @merchant_category);
+        ROLLBACK TRANSACTION;
+    END;
+    ELSE
+    BEGIN
+        -- Insert the transaction if it does not meet the decline criteria
+        INSERT INTO Transactions (MerchantID, Amount, Trans_Date_Time)
+        SELECT MerchantID, Amount, Trans_Date_Time
+        FROM INSERTED;
+    END;
+END;
+
+```
+####  A trigger that  prevent a credit card from being used more than 10 times per day:
+
+```
+CREATE TRIGGER trg_enforce_daily_usage_limit
+ON Transactions
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @daily_transaction_count INT;
+    DECLARE @cc_number VARCHAR(20); -- Adjust the data type as per your table definition
+
+    -- Calculate the number of transactions for the current day
+    SELECT @cc_number = i.CC_Number
+    FROM INSERTED i;
+
+    SELECT @daily_transaction_count = COUNT(*)
+    FROM Transactions
+    WHERE CC_Number = @cc_number
+      AND CAST(Trans_Date_Time AS DATE) = CAST(GETDATE() AS DATE);
+
+    -- Check if the daily limit has been reached
+    IF @daily_transaction_count >= 10
+    BEGIN
+        RAISERROR('Daily transaction limit of 10 exceeded for CC_Number: %s', 16, 1, @cc_number);
+        ROLLBACK TRANSACTION;
+    END
+    ELSE
+    BEGIN
+        -- Insert the new transaction if the limit has not been reached
+        INSERT INTO Transactions
+        SELECT * FROM INSERTED;
+    END
+END;
+
+```
 
 ### CREATE STORE PROCEDURES:
 
@@ -479,7 +547,7 @@ END;
 
 
 
-TRIGGERS
+
 
 
 
