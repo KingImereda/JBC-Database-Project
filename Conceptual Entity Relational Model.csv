@@ -1,0 +1,38 @@
+Columns Names,Category/Number,Dimension/Fact,,,Column Names,,,,
+,,,,,Merchant ID,,,,
+,,,,,CustomerID,,,,
+Trans_date_trans_time,C,D,,,Trans_Date_Time,,CUSTOMERS,,
+CC-Number,C,D,,,CC-Number,,,CC-Number,Primary Key
+Merchant,C,D,,,Merchant,,,,
+Category,C,D,,,Category,,,Gender,
+Amount,N,F,,,Amount,,,First_Name,
+First_Name,C,D,,,First_Name,,,Last_Name,
+Last_Name,C,D,,,Last_Name,,,Job,
+Gender,C,D,,,Gender,,,DoB,
+Street,C,D,,,Street,,,,
+City,C,D,,,City,,,,
+State,C,D,,,State,,MERCHANT,Merchant,
+zip,C,D,,,zip,,,Merchant ID,Primary Key
+Lat,C,D,,,Lat,,,Merch_lat,
+Long,C,D,,,Long,,,Merch_long,
+City_Population,N,F,,,City_Population,,,Merch_zipcode,
+Job,C,D,,,Job,,,Category,
+DoB,C,D,,,DoB,,,,
+Trans_num,C,D,,,Trans_num,,,,
+unix_time,C,D,,,unix_time,,,CustomerID,Primary Key
+Merch_lat,C,D,,,Merch_lat,,CUSTOMER_LOCATION,Street,
+Merch_long,C,D,,,Merch_long,,,City,
+Fraud,N,F,,,Fraud,,,State,
+Merch_zipcode,C,D,,,Merch_zipcode,,,zip,
+,,,,,,,,Lat,
+,,,,,,,,Long,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,Trans-Num,
+,,,,,,,TRANSACTION/FACT,Amount,
+,,,,,,,,City_population,
+,,,,,,,,Fraud,
+,,,,,,,,CC_Number,Foreign Key
+,,,,,,,,MerchantID,Foreign Key
+,,,,,,,,CustomerID,Foreign Key
+,,,,,,,,Trans_Date_Time,
