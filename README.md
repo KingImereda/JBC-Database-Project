@@ -26,7 +26,7 @@ To address these challenges, a SQL-based database solution was proposed. This da
 - Performance Optimization: Optimize database performance through indexing[Clustered index, Non Clustered index], partitioning, Cache, Query tuning, and other techniques to handle large volumes of data 
   efficiently.
     
-- Data Security: Implement robust security measures to protect sensitive credit card information from unauthorized access.
+- Database Security, Users Management & Priviledges: Implement robust security measures to protect sensitive credit card information from unauthorized access.
   
 - Backup & Recovery.
 
@@ -567,6 +567,105 @@ ON MERCHANT (MerchantID, Merchant);
 CREATE INDEX TRANSACTIONS_INDEX
 ON TRANSACTIONS (Trans_num);
 ```
+
+#### Note:
+The decision to index specific columns should be informed by a comprehensive analysis of your database's structure and usage patterns. Columns frequently involved in JOIN and WHERE clauses are prime candidates for indexing. However, remember that indexing choices are dynamic and may need to be adjusted as your database's usage evolves.
+
+
+## DATABASE SECURITY, USER MANAGEMENT & PRIVILEDGES.
+User management is a critical component of our database security infrastructure. By carefully managing user access, we can significantly reduce the risk of data breaches, unauthorized data manipulation, and operational disruptions. Effective user management ensures that only authorized individuals can interact with our database, safeguarding our sensitive information and maintaining the integrity of our systems.
+
+The following script were use to create User Access and Priviledges.
+#### Access Logins
+create logins for each user who needs access to the SQL Server instance.
+```
+-- Create a login for a Database Administrator
+CREATE LOGIN DBA_Login WITH PASSWORD = 'StrongPassword123';
+```
+```
+-- Create a login for a Database Designer
+CREATE LOGIN Designer_Login WITH PASSWORD = 'StrongPassword123';
+```
+```
+-- Create a login for an End User
+CREATE LOGIN EndUser_Login WITH PASSWORD = 'StrongPassword123';
+```
+```
+-- Create a login for a Software Engineer
+CREATE LOGIN Engineer_Login WITH PASSWORD = 'StrongPassword123';
+```
+```
+-- Create a login for a Manager
+CREATE LOGIN Manager_Login WITH PASSWORD = 'StrongPassword123';
+```
+```
+-- Create a login for a Security Officer
+CREATE LOGIN SecurityOfficer_Login WITH PASSWORD = 'StrongPassword123';
+```
+Create Database Users
+#### Next, create database users for each login in the specific database.
+
+```
+--USE YourDatabase(Credit_Card);
+
+-- Create a user for the Database Administrator
+CREATE USER DBA_User FOR LOGIN DBA_Login;
+
+-- Create a user for the Database Designer
+CREATE USER Designer_User FOR LOGIN Designer_Login;
+
+-- Create a user for the End User
+CREATE USER EndUser_User FOR LOGIN EndUser_Login;
+
+-- Create a user for the Software Engineer
+CREATE USER Engineer_User FOR LOGIN Engineer_Login;
+
+-- Create a user for the Manager
+CREATE USER Manager_User FOR LOGIN Manager_Login;
+
+-- Create a user for the Security Officer
+CREATE USER SecurityOfficer_User FOR LOGIN SecurityOfficer_Login;
+```
+
+#### Assigninging Roles For Each User  Responsibilities.
+
+```
+-- Assign roles and permissions for the Database Administrator
+ALTER ROLE db_owner ADD MEMBER DBA_User;
+
+-- Assign roles and permissions for the Database Designer
+ALTER ROLE db_datareader ADD MEMBER Designer_User;
+ALTER ROLE db_datawriter ADD MEMBER Designer_User;
+
+-- Assign roles and permissions for the End User
+ALTER ROLE db_datareader ADD MEMBER EndUser_User;
+
+-- Assign roles and permissions for the Software Engineer
+ALTER ROLE db_datareader ADD MEMBER Engineer_User;
+ALTER ROLE db_datawriter ADD MEMBER Engineer_User;
+
+-- Assign roles and permissions for the Manager
+ALTER ROLE db_datareader ADD MEMBER Manager_User;
+
+-- Assign roles and permissions for the Security Officer
+ALTER ROLE db_securityadmin ADD MEMBER SecurityOfficer_User;
+
+```
+
+## DATABASE BACKUP AND RECOVERY PLAN.
+
+To ensure the uninterrupted and reliable operation of our banking systems, we've developed a comprehensive backup and recovery plan. This plan utilizes cutting-edge technology like Continuous Data Protection to
+
+safeguard our data in real-time. Additionally, we've implemented offsite replication and a multi-tiered backup strategy in the Cloud e.g Azure SQL Database or Azure Cosmo DB to protect against potential
+
+disasters. By investing in these robust measures, we're significantly reducing the risk of downtime and data loss, ensuring the continuity of our critical banking services and protecting our customers' 
+
+financial information.
+
+
+
+
+
 
 
 
