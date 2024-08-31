@@ -1,34 +1,41 @@
-# Business Case: JBC Bank Credit Card Database
+# Business Case: JBC Bank Credit Card Database.
 
 ## Problem Statement:
 
 JBC Bank, a financial institution, was facing inefficiencies in managing their credit card transactions using a traditional Excel-based system. The growing volume of data and the limitations of Excel were hindering their ability to effectively analyze and leverage credit card information for business insights and decision-making.
 
-### Proposed Solution:
+## Proposed Solution:
 To address these challenges, a SQL-based database solution was proposed. This database would provide a centralized, structured repository for credit card data, enabling efficient storage, retrieval, and analysis of information.
 
-### Project Scope:
+## Project Scope:
 - Data Migration: Transfer the existing credit card data from the Excel file into a SSMS  database.
+  
 - Data Validation/Quality Check- Ensure data quality by cleaning and validating the migrated data to remove inconsistencies and errors.
-- Database Normalization
--- Create respective tables- Customer, Customer_Location, Merchant, Transaction
--- Alter/update table
--- Insert records
+  
+- Database Normalization.
+-- Create respective tables- Customer, Customer_Location, Merchant, Transaction.
+-- Alter/update table.
+-- Insert records.
+  
 - Database Design(ERD): Create a well-structured database schema-Entities,Attrributes and their relationship(s),to efficiently store and manage credit card data.
+  
+- Database Automation.
+  - Triggers.
+  - Store Procedures & Query Development: Develop SQL queries to extract, analyze, and report on credit card data for various business purposes as well as store complex SQL queries in store procedures.
+ 
 - Performance Optimization: Optimize database performance through indexing[Clustered index, Non Clustered index], partitioning, Cache, Query tuning, and other techniques to handle large volumes of data 
   efficiently.
-- Database Automation
-  -Triggers
-  - Store Procedures & Query Development: Develop SQL queries to extract, analyze, and report on credit card data for various business purposes as well as store complex SQL queries in store procedures.
+    
 - Data Security: Implement robust security measures to protect sensitive credit card information from unauthorized access.
+  
 - Backup & Recovery.
 
-NB: The proposed Database will be built on (SSMS)SQL Server Management Studio
+### NB: The proposed Database will be built on (SSMS)SQL Server Management Studio.
 
-### DATA MIGRATION
-i. Download and install SSMS application [Download here](https:learnmicrosoft.com/sqlserver
+## DATA MIGRATION.
+i. Download and install SSMS application [Download here](https:learnmicrosoft.com/sqlserver)
 
-ii. Create Database in SSMS installed Package
+ii. Create Database in SSMS installed Package.
 ```
 -- DROP DATABASE IF ALREADY EXIST
 DROP DATABASE IF EXISTS Credit_Card;
@@ -38,21 +45,25 @@ CREATE DATABASE Credit_Card;
 iii. Prepare the Data for Migration:
 Convert the excel file to CSV-UFC for database compatibility, efficiency, data integrity, and overall ease of the migration.
 
-iv. Migrate Data from Excel to SSMS Database
+iv. Migrate Data from Excel to SSMS Database.
 Move the existing credit card data from the CSV file into a SSMS database by taking the following steps.
 
-Step 1. Import Wizard: In SSMS, right-click on the Credit_Card database and select "Tasks" -> "Import Flat File".
-Step 2. Click Next
-Step 3. Browse "location of the file to be imported".
-Step 4. Select "New Table Name" & "Table Schema" then  Click "Next"
-Step 5. Preview Data ,then Click "Next"
-Step 6. Modify Columns by doing column matching , ensuring the right data type for each column, setting constraint (e.g.Primary key , Allowing Null Values) for each column, then click     "Next"
-Step 7. Then click "Finish".
+- Step 1. Import Wizard: In SSMS, right-click on the Credit_Card database and select "Tasks" -> "Import Flat File".
+- Step 2. Click Next.
+- Step 3. Browse "location of the file to be imported".
+- Step 4. Select "New Table Name" & "Table Schema" then  Click "Next".
+- Step 5. Preview Data ,then Click "Next".
+- Step 6. Modify Columns by doing column matching , ensuring the right data type for each column, setting constraint (e.g.Primary key , Allowing Null Values) for each column, then click "Next".
+- Step 7. Then click "Finish".
 
-v.  Verify Data Import : Run the syntax < Select * from dbo.CC_Data > to verify data has been imported correctly. In all 1,048,576 records with 23 columns were imported into table" CC_Data"
+v.   To verify data has been imported correctly, run the syntax.
+```
+< Select * from dbo.CC_Data >
+```
+In all 1,048,576 records with 23 columns were imported into the new table" CC_Data"
 
-### DATA VALIDATION, CLEANING AND QUALITY CHECK.
-To ensure data integrity and Accuracy, the following data quality and validation checke were carried out
+## DATA VALIDATION, CLEANING AND QUALITY CHECK.
+To ensure data integrity and Accuracy, the following data quality and validation checke were carried out.
 
 #### Check for  Missing Values:
 
@@ -82,16 +93,19 @@ Count(Case WHEN Merch_Zipcode is Null Then 1 END) As Merch_Zipcode
 From dbo.CC_Data
 
 ```
-#### Result : In all, there are 158,978 missing values. [Merch_zipcode] column account for (158,523) , [Lat] column account for (434) and [Merch_Lat] column acount for(1).
-Upon further investigation, this result was corroborated by comparing it with the excel source file.
+#### Result : In all, there are 158,978 missing values. [Merch_zipcode] column account for (158,523) , [Lat] column account for (434) and [Merch_Lat] column acount for(1) missing value.
 
-The findings was communicated to the Data Owners and management and the following resolved were taken
+#### Upon further investigation, this result was cheched by comparing it with independent  results the excel source file.
+
+The findings was communicated to the Data Owners and management and the following resolved were taken.
 
 - Real-time Validation : Due to the sensitivity of Credit Card Fraud "Not Null" constraint should be apply to all columns in the Credit Card table.
+  
 - That Merchant Latitude and Longitude columns should be use to triangulate location of the Merchants with missing value [Merch_zipcode] column .
+  
 - Geographic Proximity: Since we have the Merchant_Latitude and Merchant_Longitude, we should use a geocoding API to impute the missing merchant_Zipcode based on the closest known location.
 
-### Check for Data Consistency in [Amount] Column
+### Check for Data Consistency in Amount Column.
 
 ```
 SELECT *
@@ -99,20 +113,21 @@ FROM dbo.CC_Data
 WHERE TRY_CAST(Amount AS DECIMAL) IS NULL;
 
 ```
-#### Result: The syntax return Zero row, which implies that all values in the amount column can be converted to decimal places or is in decimal places
+#### Result: The syntax return Zero row, which implies that all values in the amount column can be converted to decimal places or is in decimal places.
 
-#### Check for  Outliers in the Amount Column
+#### Check for  Outliers in the Amount Column.
 ```
 Select Avg (Amount) As Avg_Amount, Max(Amount) As Max_Amount, Min(Amount) As Min_Amount, STDEV(Amount) As STDEV_Amount
 From dbo.CC_Data
 
 ```
 #### Result : The syntax return the following result which shows the existence of Outliers that need to be further investigated.
+```
 Avg_Amount: 70.28
 Max_Amount: 28,948.90
 Min_Amount: 1
 STDEV: 159.55
-
+```
 #### Check For Duplicate values:
 
 ```
@@ -144,6 +159,7 @@ FROM dbo.CC_Data;
 
 ```
 #### Results: 
+```
 Columns	              Duplicate Count
 Duplicate_ID            0
 Duplicate_CC_Number	0
@@ -168,11 +184,11 @@ Duplicate_Merch_lat	112983
 Duplicate_Merch_long	99247
 Duplicate_Fraud 	1048573
 Duplicate_Merch_zipcode	1020339
-
-From the result, it can be deduce that only Unnamed_0 (CustomerID), CC_Number (Credit Card Number) and Trans-num (Transaction Number) columns have zero duplicate count, which will be use as Primary Key Columns
+```
+From the result, it can be deduce that only Unnamed_0 (CustomerID), CC_Number (Credit Card Number) and Trans-num (Transaction Number) columns have zero duplicate count, which will be use as Primary Key Columns.
 
 ### Data Cleaning:
-- Back-Up CC_Data Table
+Back-Up CC_Data Table.
 
 #### I backed-up CC_Data table in Database Credit_Card before commencing data cleaning process.
 
@@ -186,12 +202,12 @@ From dbo.CC_Data
 ```
 EXEC sp_rename 'CC_Data.Unnamed_0', 'CustomerID', 'COLUMN';
 ```
-#### - Rename Column [Trans_date_trans_time] To Column [Trans_Date_Time]
+#### Rename Column [Trans_date_trans_time] To Column [Trans_Date_Time]
 ```
 EXEC sp_rename 'CC_Data.Trans_date_trans_time', 'Trans_Date_Time', 'COLUMN';
 
 ```
-#### - Cleaning The Merchant Column to remove unwanted character " Fraud_":
+#### Cleaning The Merchant Column to remove unwanted character " Fraud_":
 
 ```
 UPDATE CC_Data
@@ -214,7 +230,7 @@ ADD MerchantID INT IDENTITY(1,1) PRIMARY KEY;
 SET Amount = ROUND(Amount, 2);
 
 ```
-#### Update the Latitude,Longitude, Merchant_Latitude and Merch_Longitude columns into 4 decimal places
+#### Update the Latitude,Longitude, Merchant_Latitude and Merch_Longitude columns into 4 decimal places.
 
 ```
 UPDATE CC_Data
@@ -231,12 +247,14 @@ SET Merch_long = ROUND(Merch_long, 4)
 
 ```
  
-### DATABASE NORMALIZATION
-After successfully migrating the data from an Excel file to a Database Table CC_Data, and conducting Data Validation, Cleaning and Quality Check I noticed that the  data is Denormalize(Serve multiple Purpose i.e It contain information about the Customer, Customer_Location, Merchant & Transaction, Which is an anomaly. A database table should only serve a single purpose , hence the Denormalize table is Normalize by breaking it into Customer, Merchant, Customer-Location, Transaction Table). This brings me to the next step Data Normalization.
+## DATABASE NORMALIZATION.
+After successfully migrating the data from an source file into a Database Table-CC_Data, and conducting Data Validation, Cleaning and Quality Check. I noticed that the  data is Denormalize(Serve multiple Purpose  i.e. It contain information about the Customer, Customer_Location, Merchant & Transaction, Which is an anomaly). 
 
-Data Normalizatiom optimize the database design by creating a single purpose for each table . This helps prevent Insert, Update and Delete errors or inconsistencies in the data which are obtainable with Tables that has multiple purposes. Its main goal is to reduce redundancy and improve data integrity.
+A database table should only serve a single purpose , hence the Denormalize table is Normalize by breaking it into Customer, Merchant, Customer-Location, Transaction Table. This brings me to the next step-Data Normalization.
 
-#### Back-UP Denormalize  table before commencing the Normalization Process
+Data Normalizatiom is the process of breaking down a large table into smaller, related tables to reduce duplication and ensure that data is stored in a consistent and efficient manner. Normalization optimize the database design by creating a single purpose for each table . This helps prevent Insert, Update and Delete errors or inconsistencies in the database development.
+
+#### Back-UP initial table before commencing the Normalization Process.
 
 ```
 Select * From dbo.CC_Data
@@ -314,7 +332,7 @@ FROM CC_Data;
 
 ```
 The initial table Has been Normalize into the following Entities Structures with there respective columns
-
+```
 CUSTOMER            CUSTOMER_LOCATION       MERCHANT              TRANSACTIONS
 CC_Number              CustomerID              MerchantID            Trans_num
 DoB                    Street                  Merchant              Amount
@@ -325,19 +343,21 @@ Job                    Long                    Merch_Zipcode         MerchantID
 DoB                                                                  CustomerID
 								     Trans_Date_Time
 
-### ENTITY RELATION DIAFRAM (ERD)
+```
+## ENTITY RELATION DIAFRAM (ERD).
 The initial table has been divide into CUSTOMER, CUSTOMER_LOCATION, MERCHANT, TRANSACTIONS Table. Then, determine the relationships among these tables through an Entity Relationship Diagram (ERD)
 
 Using the Database Diagram features in SSMS, I was able to automatically create an Entity Relation Diagram below a #One-To- Many relationship between the Fact(Transaction Table) and the Dimensions Tables.
 
 *** Entity Relation Diagram Picture
 
+## DATABASE AUTOMATION.
 
-### CREATING STORE PROCEDURE
+### TRIGGERS:
 
-#### CUSTOMER SEGMENTATION 
+### CREATE STORE PROCEDURES:
 
--- Identify high-value customers based on transaction frequency.
+#### Identify high-value customers based on transaction frequency.
 
 ```
 CREATE PROCEDURE sp_get_high_value_customers
@@ -352,7 +372,7 @@ BEGIN
 END;
 ```
 
--- Identify high-value customers based on transaction Amount.
+#### Identify high-value customers based on transaction Amount.
 ```
 CREATE PROCEDURE sp_get_high_value_customers_by_amount
 AS
@@ -366,7 +386,7 @@ BEGIN
 END;
 ```
 
--- Group customers by location
+#### Group customers by location
 ```
 CREATE PROCEDURE sp_get_customer_location_groups
 AS
@@ -378,7 +398,7 @@ BEGIN
 END;
 ```
 
--- Detect unusual transaction patterns or anomalies by location.
+#### Detect unusual transaction patterns or anomalies by location.
 ```
 CREATE PROCEDURE sp_detect_unusual_transactions
 AS
@@ -396,7 +416,7 @@ BEGIN
 END;
 ```
 
---Identify potential fraudulent transactions based on location, amount, or time.
+#### Identify potential fraudulent transactions based on location, amount, or time.
 
 ```
 CREATE PROCEDURE sp_detect_potential_fraud
@@ -424,7 +444,7 @@ BEGIN
 END;
 
 ```
--- Analyze Merchant performance based on sales volume
+#### Analyze Merchant performance based on sales volume
 ```
 CREATE PROCEDURE sp_get_merchant_performance
 AS
@@ -437,7 +457,7 @@ BEGIN
 END;
 
 ```
---Identify top-performing and underperforming merchants.
+#### Identify top-performing and underperforming merchants.
 
 ```
 CREATE PROCEDURE sp_get_merchant_performance_with_thresholds
