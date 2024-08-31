@@ -544,24 +544,29 @@ BEGIN
 END;
 ```
 
+## QUERY OPTIMIZATION
+To enhance database query efficiency, indexes were implemented on specific columns. These indexes serve as navigational tools, accelerating the retrieval of data by optimizing search processes. The following SQL scripts were executed to create these indexes
 
 
+```
+--Customer_Index on Column CC_Number, FirstName, LastName
+CREATE INDEX CUSTOMER_INDEX
+ON CUSTOMER (CC_Number, FirstName, LastName);
 
+```
 
+```
+--Merchant_Index on Column MerchantID,Merchant
+CREATE INDEX MERCHANT_INDEX
+ON MERCHANT (MerchantID, Merchant);
 
+```
 
+```
+--Transaction_Index on Column Trans_num
+CREATE INDEX TRANSACTIONS_INDEX
+ON TRANSACTIONS (Trans_num);
+```
 
-
-
-
-
-
-Benefits:
-Improved Efficiency: Streamline credit card transaction processing and reduce manual errors.
-Enhanced Data Management: Centralize credit card data, providing better organization and accessibility.
-Enhanced Analytics: Enable deeper analysis of credit card data to identify trends, patterns, and opportunities.
-Scalability: Accommodate future growth in credit card transactions without compromising performance.
-Security: Protect sensitive credit card information with robust security measures.
-By implementing a SQL-based database solution, JBC Bank can significantly improve their credit card operations, gain valuable insights, and enhance their overall customer experience.
 
 
