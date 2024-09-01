@@ -374,7 +374,7 @@ Using the Database Diagram features in SSMS, I was able to automatically create 
 
 ## DATABASE AUTOMATION.
 
-By automating database tasks, we can significantly streamline our operations, minimize errors, and optimize our database performance. This will lead to improved efficiency, accuracy, and overall management of our database environment. Specific areas of focus include automating routine tasks like backups, performance tuning, and data migration, Updates.
+By automating database tasks, we can significantly streamline our operations, minimize errors, and optimize our database performance. This will lead to improved efficiency, accuracy, and overall management of our database environment. Specific areas of focus include automating routine tasks by creating  selected Triggers and Store Procedures in our Database .
 
 ### TRIGGERS:
 #### A Trigger that declines online(net) transaction amount above 20000 from card user.
@@ -624,7 +624,7 @@ CREATE LOGIN Manager_Login WITH PASSWORD = 'StrongPassword123';
 CREATE LOGIN SecurityOfficer_Login WITH PASSWORD = 'StrongPassword123';
 ```
 Create Database Users
-#### Next, create database users for each login in the specific database.
+#### Next, Database users for each login in the specific database.
 
 ```
 --USE YourDatabase(Credit_Card);
@@ -682,6 +682,19 @@ safeguard our data in real-time. Additionally, we've implemented offsite replica
 disasters. By investing in these robust measures, we're significantly reducing the risk of downtime and data loss, ensuring the continuity of our critical banking services and protecting our customers' 
 
 financial information.
+
+
+## Conclusion:
+In conclusion, TheJBC credit card database project has been successfully completed, resulting in a robust and efficient database infrastructure. Key achievements include data migration, cleaning, validation, and optimization. The project has enhanced data management, improved data quality, and supported business insights. The database is now well-equipped to handle current and future data needs, ensuring data security, efficiency, and reliability.
+
+
+## References:
+Data Wrangling with SQL by  Raghav Kandarpa & Shivangi Saxena
+Database Advice Guide-Developer’s Guidebook by Couchbase.
+Gemini AI.
+
+# THANK YOU FOR READING.
+
 
 
 
