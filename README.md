@@ -16,7 +16,7 @@
 
 ## Statement of Problem:
 
-JBC Bank, a financial institution, was facing inefficiencies in managing their credit card transactions using a traditional Excel-based system. The growing volume of data and the limitations of Excel were hindering their ability to effectively analyze and leverage credit card information for business insights and decision-making.
+JBC Bank, A financial institution, was facing inefficiencies in managing their credit card transactions using a traditional Excel-based system. The growing volume of data and the limitations of Excel were hindering their ability to effectively analyze and leverage credit card information for business insights and decision-making.
 
 ## Proposed Solution:
 To address these challenges, a SQL-based database solution was proposed. This database would provide a centralized, structured repository for credit card data, enabling efficient storage, retrieval, and analysis of information.
