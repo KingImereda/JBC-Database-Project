@@ -32,6 +32,10 @@ To address these challenges, a SQL-based database solution was proposed. This da
 
 ### NB: The proposed Database will be built on (SSMS)SQL Server Management Studio.
 
+
+![Database](https://github.com/user-attachments/assets/8601c67c-2f0e-43ab-804c-8953937522ad)
+
+
 ## DATA MIGRATION.
 i. Download and install SSMS application [Download here](https:learnmicrosoft.com/sqlserver)
 
@@ -349,7 +353,10 @@ The initial table has been divide into CUSTOMER, CUSTOMER_LOCATION, MERCHANT, TR
 
 Using the Database Diagram features in SSMS, I was able to automatically create an Entity Relation Diagram below a #One-To- Many relationship between the Fact(Transaction Table) and the Dimensions Tables.
 
-*** Entity Relation Diagram Picture
+
+
+![Screenshot 2024-08-29 222740](https://github.com/user-attachments/assets/c4dc433d-dce3-40fe-8d68-abe284473f01)
+
 
 ## DATABASE AUTOMATION.
 
