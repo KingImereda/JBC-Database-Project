@@ -8,13 +8,13 @@
 - [Data Migration](#data-migration)
 - [Data Validation Cleaning And Quality Check](#data-validation-cleaning-and-quality)
 - [Database Normalization](#database-normalization)
-- [Database Design](#database-design)
+- [Entity Relation Diagram](#entity-relation-diagram)
 - [Database Automation](#database-automation)
 - [Performance Optimization](#performance-optimization)
 - [Database Security Users Management and Priviledges](#database-security-users-management-and-priviledges)
 - [Database Backup And Recovery Plan](#database-backup-and-recovery-plan)
 - [Conclusion](#conclusion)
-- [References](#eferences)
+- [References](#references)
 
 ## Statement of Problem:
 
