@@ -2,11 +2,11 @@
 
 ## Table of Content:
 
-- [Statement of Problem](#statement-of0problem)
+- [Statement of Problem](#statement-of-problem)
 - [Proposed Solution](#proposed-solution)
 - [Project Scope](#project-scope)
 - [Data Migration](#data-migration)
-- [DATA VALIDATION CLEANING AND QUALITY CHECK](#data-validation-cleaning-and-quality)
+- [Data Validation Cleaning And Quality Check](#data-validation-cleaning-and-quality)
 - [Database Normalization](#database-normalization)
 - [Database Design](#database-design)
 - [Database Automation](#database-automation)
@@ -82,7 +82,7 @@ v.   To verify data has been imported correctly, run the syntax.
 ```
 In all 1,048,576 records with 23 columns were imported into the new table" CC_Data"
 
-## DATA VALIDATION CLEANING AND QUALITY CHECK.
+## Data Validation Cleaning And Quality Check.
 To ensure data integrity and Accuracy, the following data quality and validation checke were carried out.
 
 #### Check for  Missing Values:
