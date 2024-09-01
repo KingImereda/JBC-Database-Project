@@ -2,7 +2,7 @@
 
 ## Table of Content:
 
-- [Problem Statement](#problem-statement)
+- [Statement of Problem](#statement-of0problem)
 - [Proposed Solution](#proposed-solution)
 - [Project Scope](#project-scope)
 - [Data Migration](#data-migration)
@@ -14,7 +14,7 @@
 - [Database Security Users Management and Priviledges](#database-security-users-management-and-priviledges)
 - [DATABASE BACKUP AND RECOVERY PLAN](#database-backup-and-recovery-plan)
 
-## Problem Statement:
+## Statement of Problem:
 
 JBC Bank, a financial institution, was facing inefficiencies in managing their credit card transactions using a traditional Excel-based system. The growing volume of data and the limitations of Excel were hindering their ability to effectively analyze and leverage credit card information for business insights and decision-making.
 
