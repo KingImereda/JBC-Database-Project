@@ -1,5 +1,19 @@
 # Business Case: JBC Bank Credit Card Database.
 
+## Table of Content:
+
+- [Problem Statement](#problem-statement)
+- [Proposed Solution](#proposed-solution)
+- [Project Scope](#project-scope)
+- [Data Migration](#data-migration)
+- [DATA VALIDATION CLEANING AND QUALITY CHECK](#data-validation-cleaning-and-quality)
+- [Database Normalization](#database-normalization)
+- [Database Design](#database-design)
+- [Database Automation](#database-automation)
+- [Performance Optimization](#performance-optimization)
+- [Database Security Users Management and Priviledges](#database-security-users-management-and-priviledges)
+- [DATABASE BACKUP AND RECOVERY PLAN](#database-backup-and-recovery-plan)
+
 ## Problem Statement:
 
 JBC Bank, a financial institution, was facing inefficiencies in managing their credit card transactions using a traditional Excel-based system. The growing volume of data and the limitations of Excel were hindering their ability to effectively analyze and leverage credit card information for business insights and decision-making.
@@ -26,9 +40,9 @@ To address these challenges, a SQL-based database solution was proposed. This da
 - Performance Optimization: Optimize database performance through indexing[Clustered index, Non Clustered index], partitioning, Cache, Query tuning, and other techniques to handle large volumes of data 
   efficiently.
     
-- Database Security, Users Management & Priviledges: Implement robust security measures to protect sensitive credit card information from unauthorized access.
+- Database Security Users Management and Priviledges: Implement robust security measures to protect sensitive credit card information from unauthorized access.
   
-- Backup & Recovery.
+- Database Backup and Recovery Plan.
 
 ### NB: The proposed Database will be built on (SSMS)SQL Server Management Studio.
 
@@ -66,7 +80,7 @@ v.   To verify data has been imported correctly, run the syntax.
 ```
 In all 1,048,576 records with 23 columns were imported into the new table" CC_Data"
 
-## DATA VALIDATION, CLEANING AND QUALITY CHECK.
+## DATA VALIDATION CLEANING AND QUALITY CHECK.
 To ensure data integrity and Accuracy, the following data quality and validation checke were carried out.
 
 #### Check for  Missing Values:
@@ -551,7 +565,7 @@ BEGIN
 END;
 ```
 
-## QUERY OPTIMIZATION
+## PERFORMANCE OPTIMIZATION.
 To enhance database query efficiency, indexes were implemented on specific columns. These indexes serve as navigational tools, accelerating the retrieval of data by optimizing search processes. The following SQL scripts were executed to create these indexes
 
 
