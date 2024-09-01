@@ -95,9 +95,9 @@ From dbo.CC_Data
 ```
 #### Result : In all, there are 158,978 missing values. [Merch_zipcode] column account for (158,523) , [Lat] column account for (434) and [Merch_Lat] column acount for(1) missing value.
 
-#### Upon further investigation, this result was cheched by comparing it with independent  results the excel source file.
+#### Upon further investigation, this result was checked by comparing it with independent  results the excel source file.
 
-The findings was communicated to the Data Owners and management and the following resolved were taken.
+The findings was communicated to the Data Owners and management and the following resolves were taken.
 
 - Real-time Validation : Due to the sensitivity of Credit Card Fraud "Not Null" constraint should be apply to all columns in the Credit Card table.
   
@@ -185,7 +185,7 @@ Duplicate_Merch_long	99247
 Duplicate_Fraud 	1048573
 Duplicate_Merch_zipcode	1020339
 ```
-From the result, it can be deduce that only Unnamed_0 (CustomerID), CC_Number (Credit Card Number) and Trans-num (Transaction Number) columns have zero duplicate count, which will be use as Primary Key Columns.
+From the result, it can be deduced that only Unnamed_0 (CustomerID), CC_Number (Credit Card Number) and Trans-num (Transaction Number) columns have zero duplicate count, which will be used as Primary Key Columns.
 
 ### Data Cleaning:
 Back-Up CC_Data Table.
@@ -248,11 +248,11 @@ SET Merch_long = ROUND(Merch_long, 4)
 ```
  
 ## DATABASE NORMALIZATION.
-After successfully migrating the data from an source file into a Database Table-CC_Data, and conducting Data Validation, Cleaning and Quality Check. I noticed that the  data is Denormalize(Serve multiple Purpose  i.e. It contain information about the Customer, Customer_Location, Merchant & Transaction, Which is an anomaly). 
+After successfully migrating the data from a source file into a Database Table-CC_Data, and conducting Data Validation, Cleaning and Quality Check. I noticed that the  data is Denormalize(Serve multiple Purpose  i.e. It contains information about the Customer, Customer_Location, Merchant & Transaction, Which is an anomaly). 
 
 A database table should only serve a single purpose , hence the Denormalize table is Normalize by breaking it into Customer, Merchant, Customer-Location, Transaction Table. This brings me to the next step-Data Normalization.
 
-Data Normalizatiom is the process of breaking down a large table into smaller, related tables to reduce duplication and ensure that data is stored in a consistent and efficient manner. Normalization optimize the database design by creating a single purpose for each table . This helps prevent Insert, Update and Delete errors or inconsistencies in the database development.
+Data Normalizatiom is the process of breaking down a large table into smaller, related tables to reduce duplication and ensure that data is stored in a consistent and efficient manner. Normalization optimizes the database design by creating a single purpose for each table . This helps prevent Insert, Update and Delete errors or inconsistencies in the database development.
 
 #### Back-UP initial table before commencing the Normalization Process.
 
@@ -356,7 +356,7 @@ Using the Database Diagram features in SSMS, I was able to automatically create 
 By automating database tasks, we can significantly streamline our operations, minimize errors, and optimize our database performance. This will lead to improved efficiency, accuracy, and overall management of our database environment. Specific areas of focus include automating routine tasks like backups, performance tuning, and data migration, Updates.
 
 ### TRIGGERS:
-#### A Trigger that declining online(net) transaction amount above 20000 from card user.
+#### A Trigger that declines online(net) transaction amount above 20000 from card user.
 ```
 CREATE TRIGGER trg_decline_high_amount_transactions
 ON Transactions
@@ -575,7 +575,7 @@ The decision to index specific columns should be informed by a comprehensive ana
 ## DATABASE SECURITY, USER MANAGEMENT & PRIVILEDGES.
 User management is a critical component of our database security infrastructure. By carefully managing user access, we can significantly reduce the risk of data breaches, unauthorized data manipulation, and operational disruptions. Effective user management ensures that only authorized individuals can interact with our database, safeguarding our sensitive information and maintaining the integrity of our systems.
 
-The following script were use to create User Access and Priviledges.
+The following scripts were use to create User Access and Priviledges.
 #### Access Logins
 create logins for each user who needs access to the SQL Server instance.
 ```
