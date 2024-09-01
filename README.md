@@ -687,7 +687,7 @@ financial information.
 
 
 ## Conclusion.
-In conclusion, TheJBC credit card database project has been successfully completed, resulting in a robust and efficient database infrastructure. Key achievements include data migration, cleaning, validation, and optimization. The project has enhanced data management, improved data quality, and supported business insights. The database is now well-equipped to handle current and future data needs, ensuring data security, efficiency, and reliability.
+In conclusion, The JBC credit card database project has been successfully completed, resulting in a robust and efficient database infrastructure. Key achievements include data migration, cleaning, validation, and optimization. The project has enhanced data management, improved data quality, and supported business insights. The database is now well-equipped to handle current and future data needs, ensuring data security, efficiency, and reliability.
 
 
 ## References.
