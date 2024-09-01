@@ -12,7 +12,7 @@
 - [Database Automation](#database-automation)
 - [Performance Optimization](#performance-optimization)
 - [Database Security Users Management and Priviledges](#database-security-users-management-and-priviledges)
-- [DATABASE BACKUP AND RECOVERY PLAN](#database-backup-and-recovery-plan)
+- [Database Backup And Recovery Plan](#database-backup-and-recovery-plan)
 - [Conclusion](#conclusion)
 - [References](#eferences)
 
