@@ -267,7 +267,7 @@ SET Merch_long = ROUND(Merch_long, 4)
 
 ```
  
-## DATABASE NORMALIZATION.
+## Database Normalization.
 After successfully migrating the data from a source file into a Database Table-CC_Data, and conducting Data Validation, Cleaning and Quality Check. I noticed that the  data is Denormalize(Serve multiple Purpose  i.e. It contains information about the Customer, Customer_Location, Merchant & Transaction, Which is an anomaly). 
 
 A database table should only serve a single purpose , hence the Denormalize table is Normalize by breaking it into Customer, Merchant, Customer-Location, Transaction Table. This brings me to the next step-Data Normalization.
@@ -364,7 +364,7 @@ DoB                                                                  CustomerID
 								     Trans_Date_Time
 
 ```
-## ENTITY RELATION DIAFRAM (ERD).
+## Entity Relation Diagram (ERD).
 The initial table has been divide into CUSTOMER, CUSTOMER_LOCATION, MERCHANT, TRANSACTIONS Table. Then, determine the relationships among these tables through an Entity Relationship Diagram (ERD)
 
 Using the Database Diagram features in SSMS, I was able to automatically create an Entity Relation Diagram below a #One-To- Many relationship between the Fact(Transaction Table) and the Dimensions Tables.
@@ -374,7 +374,7 @@ Using the Database Diagram features in SSMS, I was able to automatically create 
 ![Screenshot 2024-08-29 222740](https://github.com/user-attachments/assets/c4dc433d-dce3-40fe-8d68-abe284473f01)
 
 
-## DATABASE AUTOMATION.
+## Database Automation.
 
 By automating database tasks, we can significantly streamline our operations, minimize errors, and optimize our database performance. This will lead to improved efficiency, accuracy, and overall management of our database environment. Specific areas of focus include automating routine tasks by creating  selected Triggers and Store Procedures in our Database .
 
@@ -567,7 +567,7 @@ BEGIN
 END;
 ```
 
-## PERFORMANCE OPTIMIZATION.
+## Performance Optimization.
 To enhance database query efficiency, indexes were implemented on specific columns. These indexes serve as navigational tools, accelerating the retrieval of data by optimizing search processes. The following SQL scripts were executed to create these indexes
 
 
