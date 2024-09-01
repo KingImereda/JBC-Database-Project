@@ -364,7 +364,7 @@ DoB                                                                  CustomerID
 								     Trans_Date_Time
 
 ```
-## Entity Relation Diagram (ERD).
+## Entity Relation Diagram
 The initial table has been divide into CUSTOMER, CUSTOMER_LOCATION, MERCHANT, TRANSACTIONS Table. Then, determine the relationships among these tables through an Entity Relationship Diagram (ERD)
 
 Using the Database Diagram features in SSMS, I was able to automatically create an Entity Relation Diagram below a #One-To- Many relationship between the Fact(Transaction Table) and the Dimensions Tables.
